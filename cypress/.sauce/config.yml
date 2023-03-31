@@ -1,0 +1,23 @@
+kind: imagerunner
+apiVersion: v1alpha
+
+suites:
+  - name: "Cypress in HTO - Raw Image"
+    image: cypress/included:12.9.0
+    timeout: 10m
+    artifacts:
+      - "/cypress/screenshots"
+      - "/cypress/videos"
+    files:
+      - src: ./cypress/e2e/actions.cy.js
+        dst: /cypress/e2e/actions.cy.js
+      - src: ./cypress.config.js
+        dst: /cypress.config.js
+
+artifacts:
+  cleanup: false
+  download:
+    when: always
+    match:
+      - '*'
+    directory: ./artifacts
