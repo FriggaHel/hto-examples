@@ -1,0 +1,28 @@
+kind: imagerunner
+apiVersion: v1alpha
+
+suites:
+  - name: "TestCafe in HTO - Raw image"
+    image: testcafe/testcafe:2.4.0
+    timeout: 10m
+    artifacts:
+      - "/tests/artifacts/videos"
+      - "/tests/artifacts/screenshots"
+    files:
+      - src: ./tests/config/constants.js
+        dst: /tests/config/constants.js
+      - src: ./tests/page-objects/Inventory.js
+        dst: /tests/page-objects/Inventory.js
+      - src: ./tests/page-objects/Login.js
+        dst: /tests/page-objects/Login.js
+      - src: ./tests/specs/login.test.js
+        dst: /tests/specs/login.test.js
+    entrypoint: "/opt/testcafe/docker/testcafe-docker.sh -s path=/tests/artifacts/screenshots chromium:headless /tests/**/*.test.js"
+
+artifacts:
+  cleanup: false
+  download:
+    when: always
+    match:
+      - '*'
+    directory: ./artifacts
