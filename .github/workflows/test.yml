@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
+  SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: saucelabs/saucectl-run-action@v3
+        with:
+          working-directory: ./cypress
+
+  playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: saucelabs/saucectl-run-action@v3
+        with:
+          working-directory: ./playwright
+
+  testcafe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: saucelabs/saucectl-run-action@v3
+        with:
+          working-directory: ./testcafe
