@@ -1,0 +1,23 @@
+kind: imagerunner
+apiVersion: v1alpha
+
+suites:
+  - name: "Playwright in HTO - Raw image"
+    image: mcr.microsoft.com/playwright:v1.32.0
+    timeout: 10m
+    artifacts:
+      - "/app/test-results"
+    files:
+      - src: tests/demo-todo-app.spec.js
+        dst: /app/tests/demo-todo-app.spec.js
+      - src: tests/example.spec.js
+        dst: /app/tests/example.spec.js
+    entrypoint: /bin/bash -c "cd /app && npm i  @playwright/test@1.32.0 playwright@1.32.0 && npx playwright test"
+
+artifacts:
+  cleanup: false
+  download:
+    when: always
+    match:
+      - '*'
+    directory: ./artifacts
