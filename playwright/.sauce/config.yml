@@ -8,11 +8,13 @@ suites:
     artifacts:
       - "/app/test-results"
     files:
+      - src: playwright.config.js
+        dst: /app/playwright.config.js
       - src: tests/demo-todo-app.spec.js
         dst: /app/tests/demo-todo-app.spec.js
       - src: tests/example.spec.js
         dst: /app/tests/example.spec.js
-    entrypoint: /bin/bash -c "cd /app && npm i  @playwright/test@1.32.0 playwright@1.32.0 && npx playwright test"
+    entrypoint: /bin/bash -c "cd /app && npm i @playwright/test@1.32.0 playwright@1.32.0 && npx playwright test"
 
 artifacts:
   cleanup: false
