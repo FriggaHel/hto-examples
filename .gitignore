@@ -1,0 +1,6 @@
+**/node_modules
+artifacts
+cypress/artifacts
+cypress/cypress/videos
+cypress/cypress/screenshots
+playwright/test-results
