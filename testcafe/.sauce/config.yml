@@ -2,6 +2,13 @@ kind: imagerunner
 apiVersion: v1alpha
 
 suites:
+  - name: "TestCafe in HTO - Custom Image"
+    image: ${DOCKER_IMAGE}
+    timeout: 10m
+    artifacts:
+      - "/tests/artifacts/videos"
+      - "/tests/artifacts/screenshots"
+
   - name: "TestCafe in HTO - Raw image"
     image: testcafe/testcafe:2.4.0
     timeout: 10m

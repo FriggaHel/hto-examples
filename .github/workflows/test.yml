@@ -52,14 +52,30 @@ jobs:
           push: true
           tags: fpsl/dummy-runners:playwright-${{ steps.short-sha.outputs.sha }}
       - uses: saucelabs/saucectl-run-action@v3
+        env:
+          DOCKER_IMAGE: fpsl/dummy-runners:playwright-${{ steps.short-sha.outputs.sha }}
         with:
           working-directory: ./playwright
 
   testcafe:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: benjlevesque/short-sha@v2.2
+        id: short-sha
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: ./testcafe/
+          platforms: linux/amd64
+          push: true
+          tags: fpsl/dummy-runners:testcafe-${{ steps.short-sha.outputs.sha }}
       - uses: saucelabs/saucectl-run-action@v3
+        env:
+          DOCKER_IMAGE: fpsl/dummy-runners:testcafe-${{ steps.short-sha.outputs.sha }}
         with:
           working-directory: ./testcafe
