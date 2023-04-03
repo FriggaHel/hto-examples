@@ -1,4 +1,4 @@
-FROM node:18
+FROM mcr.microsoft.com/playwright:v1.32.1
 
 RUN mkdir /app/
 WORKDIR /app
