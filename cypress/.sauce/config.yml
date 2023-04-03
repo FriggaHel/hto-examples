@@ -6,15 +6,15 @@ suites:
     image: ${DOCKER_IMAGE}
     timeout: 10m
     artifacts:
-      - "/cypress/screenshots"
-      - "/cypress/videos"
+      - "/cypress/artifacts/screenshots"
+      - "/cypress/artifacts/videos"
 
   - name: "Cypress in HTO - Raw Image"
     image: cypress/included:12.9.0
     timeout: 10m
     artifacts:
-      - "/cypress/screenshots"
-      - "/cypress/videos"
+      - "/cypress/artifacts/screenshots"
+      - "/cypress/artifacts/videos"
     files:
       - src: ./cypress/e2e/actions.cy.js
         dst: /cypress/e2e/actions.cy.js
