@@ -10,5 +10,6 @@ RUN npm ci
 RUN npx playwright install-deps
 
 ADD tests /app/tests/
+ADD playwright.config.js /app/
 
 ENTRYPOINT ["npx", "playwright", "test"]
