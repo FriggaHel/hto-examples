@@ -6,13 +6,13 @@ suites:
     image: ${DOCKER_IMAGE}
     timeout: 10m
     artifacts:
-      - "/app/test-results"
+      - "/app/artifacts/test-results"
 
   - name: "Playwright in HTO - Raw image"
     image: mcr.microsoft.com/playwright:v1.32.0
     timeout: 10m
     artifacts:
-      - "/app/test-results"
+      - "/app/artifacts/test-results"
     files:
       - src: playwright.config.js
         dst: /app/playwright.config.js
