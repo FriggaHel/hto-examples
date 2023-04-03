@@ -34,6 +34,7 @@ jobs:
           DOCKER_IMAGE: fpsl/dummy-runners:cypress-${{ steps.short-sha.outputs.sha }}
         with:
           working-directory: ./cypress
+      - run: tree ./cypress/artifacts
 
   playwright:
     runs-on: ubuntu-latest
@@ -58,6 +59,7 @@ jobs:
           DOCKER_IMAGE: fpsl/dummy-runners:playwright-${{ steps.short-sha.outputs.sha }}
         with:
           working-directory: ./playwright
+      - run: tree ./playwright/artifacts
 
   testcafe:
     runs-on: ubuntu-latest
@@ -81,3 +83,4 @@ jobs:
           DOCKER_IMAGE: fpsl/dummy-runners:testcafe-${{ steps.short-sha.outputs.sha }}
         with:
           working-directory: ./testcafe
+      - run: tree ./testcafe/artifacts
