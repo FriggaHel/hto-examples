@@ -2,6 +2,13 @@ kind: imagerunner
 apiVersion: v1alpha
 
 suites:
+  - name: "Cypress in HTO - Custom Image"
+    image: ${DOCKER_IMAGE}
+    timeout: 10m
+    artifacts:
+      - "/cypress/screenshots"
+      - "/cypress/videos"
+
   - name: "Cypress in HTO - Raw Image"
     image: cypress/included:12.9.0
     timeout: 10m
