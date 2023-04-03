@@ -11,4 +11,4 @@ RUN npx playwright install-deps
 
 ADD tests /app/tests/
 
-ENTRYPOINT ["npx", "playwright", "test", "-j", "1", "--browser", "chromium"]
+ENTRYPOINT ["bash" "-c", "npm install -D @playwright/test && npx playwright test -j 1 --browser chromium"]
