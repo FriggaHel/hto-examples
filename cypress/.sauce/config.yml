@@ -1,6 +1,9 @@
 kind: imagerunner
 apiVersion: v1alpha
 
+defaults:
+  workload: other
+
 suites:
   - name: "Cypress in HTO - Custom Image"
     image: ${DOCKER_IMAGE}
